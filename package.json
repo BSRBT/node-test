@@ -1,0 +1,16 @@
+{
+  "name": "smiletest-api-server",
+  "version": "1.0.0",
+  "description": "A simple API server for SmileTest",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^6.10.0",
+    "express-async-handler": "^1.2.0"
+  },
+  "author": "",
+  "license": "BSRBT"
+}
