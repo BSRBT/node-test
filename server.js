@@ -18,7 +18,7 @@ app.get('/', async (req, res) => {
   let listItems = smileTests.map(test => `
     <li class="flex justify-between items-center p-2 border-b">
       <span>${test.name}: ${test.description}</span>
-      <form method="POST" action="/delete/${test._id}" class="inline">
+      <form method="POST" action="/api/smiletest/delete/${test._id}" class="inline">
         <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded">Delete</button>
       </form>
     </li>
@@ -38,7 +38,7 @@ app.get('/', async (req, res) => {
         <h1 class="text-2xl font-bold mb-4">Smile Test Entries</h1>
         <ul class="mb-6">${listItems}</ul>
         <h2 class="text-xl font-semibold mb-2">Add New Entry</h2>
-        <form method="POST" action="/add" class="flex flex-col space-y-4">
+        <form method="POST" action="/api/smiletest/add" class="flex flex-col space-y-4">
           <input name="name" placeholder="Name" required class="border p-2 rounded">
           <input name="description" placeholder="Description" class="border p-2 rounded">
           <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Add</button>
@@ -47,17 +47,6 @@ app.get('/', async (req, res) => {
     </body>
     </html>
   `);
-});
-
-app.post('/add', async (req, res) => {
-  const { name, description } = req.body;
-  await SmileTest.create({ name, description });
-  res.redirect('/');
-});
-
-app.post('/delete/:id', async (req, res) => {
-  await SmileTest.findByIdAndDelete(req.params.id);
-  res.redirect('/');
 });
 
 app.listen(port, () => {

@@ -34,4 +34,15 @@ router.delete('/:id', asyncHandler(async (req, res) => {
   res.json({ message: 'Deleted successfully' });
 }));
 
+router.post('/add', async (req, res) => {
+  const { name, description } = req.body;
+  await SmileTest.create({ name, description });
+  res.redirect('/');
+});
+
+router.post('/delete/:id', async (req, res) => {
+  await SmileTest.findByIdAndDelete(req.params.id);
+  res.redirect('/');
+});
+
 module.exports = router;
